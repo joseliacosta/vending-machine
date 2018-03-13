@@ -80,4 +80,18 @@ public class VendingMachineTest {
         Assert.assertEquals(null, result.get(0.01));
 
     }
+
+    @Test
+    public void shouldCalculateCoinsQtdWhenChangeIs1900AndQtdCoinsIsLimited() {
+        VendingMachine machine = new VendingMachine();
+        Map result = machine.calculateCoins(19.00);
+
+        Assert.assertEquals(10, result.get(1.00));
+        Assert.assertEquals(15, result.get(0.5));
+        Assert.assertEquals(6, result.get(0.25));
+        Assert.assertEquals(null, result.get(0.1));
+        Assert.assertEquals(null, result.get(0.05));
+        Assert.assertEquals(null, result.get(0.01));
+
+    }
 }
