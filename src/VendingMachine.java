@@ -23,8 +23,8 @@ public class VendingMachine {
         for(int counter = 0; counter < coins.length; counter++) {
             quantity = (int)(changeRest / coins[counter]);
 
-            if(quantity > 10) {
-                quantity = 10;
+            if(quantity > limit[counter]) {
+                quantity = limit[counter];
             }
 
             changeRest = changeRest - (quantity * coins[counter]);
