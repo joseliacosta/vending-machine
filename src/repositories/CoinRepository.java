@@ -1,12 +1,12 @@
 package repositories;
 
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.*;
 
 public class CoinRepository {
     private Map<Double,Integer> coins;
 
-    CoinRepository(){
+    public CoinRepository(){
         coins = new HashMap();
     }
 
@@ -23,9 +23,29 @@ public class CoinRepository {
         return 0;
     }
 
-    public void withdraw(double coin, Integer quantity) {
+    //TODO getCoins that return coins
+
+
+    public List<Double> getCoins() {
+        Set<Double> coinsValues = coins.keySet();
+
+        List<Double> coins = new ArrayList<>();
+
+        for (Double coin: coinsValues) {
+            if(getQuantity(coin) != 0) {
+                coins.add(coin);
+            }
+        }
+
+        return coins;
+    }
+
+    public void withdraw(double coin, Integer quantity) throws InvalidQuantityCoinsException{
         Integer currentQuantity = getQuantity(coin);
         Integer total = currentQuantity - quantity;
+        if(total < 0){
+            throw new InvalidQuantityCoinsException();
+        }
         coins.put(coin, total);
     }
 }

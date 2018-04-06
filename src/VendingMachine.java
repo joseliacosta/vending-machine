@@ -1,8 +1,29 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import product.Product;
+import repositories.CoinRepository;
 public class VendingMachine {
+
+    private List<Product> products;
+
+    public VendingMachine() {
+
+    }
+
+    public VendingMachine(List<Product> products) {
+        this.products = products;
+    }
+
+    public List<Product> getProducts() {
+        return this.products;
+    }
+
     public double coins[] = {1.00, 0.50, 0.25, 0.10, 0.05, 0.01};
+
+    CoinRepository repository = new CoinRepository();
 
     public int limit[] = {10,15,20,25,30,35};
 

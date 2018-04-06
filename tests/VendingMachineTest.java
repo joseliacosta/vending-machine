@@ -1,11 +1,27 @@
 import org.junit.Assert;
 import org.junit.Test;
+import product.Product;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.*;
 
 public class VendingMachineTest {
+
+    @Test
+    public void getProducts_shouldReturnThreeProducts() {
+        List<Product> products = new ArrayList<>();
+        Product product1 = new Product("Dadinho", 0.15);
+        Product product2 = new Product("Suco", 2.00);
+        Product product3 = new Product("Amendoim", 1.15);
+        products.add(product1);
+        products.add(product2);
+        products.add(product3);
+        VendingMachine machine = new VendingMachine(products);
+        Assert.assertEquals(3, machine.getProducts().size());
+    }
     @Test
     public void shouldCalculateChange() throws InvalidPaymentException {
         VendingMachine machine = new VendingMachine();
