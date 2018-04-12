@@ -1,16 +1,31 @@
-import java.util.Scanner;
-import java.util.HashMap;
-import java.util.Map;
+import product.Product;
+import repositories.CoinRepository;
+
+import java.util.*;
 
 public class Main {
     public static void main (String[] args) {
-        System.out.println("Informe o valor do produto escolhido: ");
+        List<Product> products = new ArrayList<>();
+        Product product1 = new Product("Dadinho", 0.15);
+        Product product2 = new Product("Suco", 2.00);
+        Product product3 = new Product("Amendoim", 1.15);
+        products.add(product1);
+        products.add(product2);
+        products.add(product3);
+        CoinRepository coinRepository = new CoinRepository();
+        coinRepository.add(1.00,10);
+        VendingMachine machine = new VendingMachine(products, coinRepository);
+
+
+        for(Product product : machine.getProducts()) {
+            System.out.println(product.getName());
+        }
+
+        System.out.println("Informe o número do produto escolhido: ");
         Scanner scanner = new Scanner(System.in);
         double productPrice = scanner.nextDouble();
-        System.out.println("Insira o dinheiro: ");
-        double payment = scanner.nextDouble();
 
-        VendingMachine machine = new VendingMachine();
+        double payment = scanner.nextDouble();
 
         try {
             double change = machine.calculateChange(productPrice, payment);
