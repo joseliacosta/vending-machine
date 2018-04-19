@@ -18,7 +18,13 @@ public class ProductKit implements Product{
 
     @Override
     public Double getPrice() {
-        return null;
+        Double productsValue = 0.00;
+
+        for(int counter = 0; counter < products.size(); counter++) {
+            productsValue += products.get(counter).getPrice();
+        }
+
+        return productsValue * (1 - discount);
     }
 
     @Override
