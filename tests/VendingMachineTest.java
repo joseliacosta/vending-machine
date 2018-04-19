@@ -26,37 +26,80 @@ public class VendingMachineTest {
     }
     @Test
     public void shouldCalculateChange() throws InvalidPaymentException {
-        VendingMachine machine = new VendingMachine();
+        List<Product> products = new ArrayList<>();
+        Product productUnit1 = new ProductUnit("Dadinho", 0.15);
+        Product productUnit2 = new ProductUnit("Suco", 2.00);
+        Product productUnit3 = new ProductUnit("Amendoim", 1.15);
+        products.add(productUnit1);
+        products.add(productUnit2);
+        products.add(productUnit3);
+        CoinRepository coinRepository = new CoinRepository();
+        coinRepository.add(1.00,10);
+        coinRepository.add(0.50,10);
+        coinRepository.add(0.25,10);
+        coinRepository.add(0.10,10);
+        VendingMachine machine = new VendingMachine(products, coinRepository);
         Assert.assertEquals(5, machine.calculateChange(5,10), 0);
     }
 
     @Test(expected = InvalidPaymentException.class)
     public void shouldThrowAnExeptionIfPaymentIsLessThanProductPrice() throws InvalidPaymentException {
-        VendingMachine machine = new VendingMachine();
+        List<Product> products = new ArrayList<>();
+        Product productUnit1 = new ProductUnit("Dadinho", 0.15);
+        Product productUnit2 = new ProductUnit("Suco", 2.00);
+        Product productUnit3 = new ProductUnit("Amendoim", 1.15);
+        products.add(productUnit1);
+        products.add(productUnit2);
+        products.add(productUnit3);
+        CoinRepository coinRepository = new CoinRepository();
+        coinRepository.add(1.00,10);
+        coinRepository.add(0.50,10);
+        coinRepository.add(0.25,10);
+        coinRepository.add(0.10,10);
+        VendingMachine machine = new VendingMachine(products, coinRepository);
         machine.calculateChange(10,5);
     }
 
     @Test
     public void shouldCalculateCoinsQtdWhenChangeIsTwo() {
+        List<Product> products = new ArrayList<>();
+        Product productUnit1 = new ProductUnit("Dadinho", 0.15);
+        Product productUnit2 = new ProductUnit("Suco", 2.00);
+        Product productUnit3 = new ProductUnit("Amendoim", 1.15);
+        products.add(productUnit1);
+        products.add(productUnit2);
+        products.add(productUnit3);
+
         CoinRepository coinRepository = new CoinRepository();
         coinRepository.add(1.00,10);
         coinRepository.add(0.50,10);
         coinRepository.add(0.25,10);
         coinRepository.add(0.10,10);
-        VendingMachine machine = new VendingMachine(coinRepository);
+
+        VendingMachine machine = new VendingMachine(products, coinRepository);
         Map result = machine.calculateCoins(2.00);
+
         Assert.assertEquals(2, result.get(1.00));
     }
 
     @Test
     public void shouldCalculateCoinsQtdWhenChangeIs375() {
+
+        List<Product> products = new ArrayList<>();
+        Product productUnit1 = new ProductUnit("Dadinho", 0.15);
+        Product productUnit2 = new ProductUnit("Suco", 2.00);
+        Product productUnit3 = new ProductUnit("Amendoim", 1.15);
+        products.add(productUnit1);
+        products.add(productUnit2);
+        products.add(productUnit3);
+
         CoinRepository coinRepository = new CoinRepository();
         coinRepository.add(1.00,10);
         coinRepository.add(0.50,10);
         coinRepository.add(0.25,10);
         coinRepository.add(0.10,10);
 
-        VendingMachine machine = new VendingMachine(coinRepository);
+        VendingMachine machine = new VendingMachine(products, coinRepository);
         Map result = machine.calculateCoins(3.75);
 
         Assert.assertEquals(3, result.get(1.00));
@@ -65,17 +108,23 @@ public class VendingMachineTest {
         Assert.assertEquals(null, result.get(0.1));
         Assert.assertEquals(null, result.get(0.05));
         Assert.assertEquals(null, result.get(0.01));
-
     }
 
     @Test
     public void shouldCalculateCoinsQtdWhenChangeIs325() {
+        List<Product> products = new ArrayList<>();
+        Product productUnit1 = new ProductUnit("Dadinho", 0.15);
+        Product productUnit2 = new ProductUnit("Suco", 2.00);
+        Product productUnit3 = new ProductUnit("Amendoim", 1.15);
+        products.add(productUnit1);
+        products.add(productUnit2);
+        products.add(productUnit3);
 
         CoinRepository coinRepository = new CoinRepository();
         coinRepository.add(1.00,10);
         coinRepository.add(0.25,10);
 
-        VendingMachine machine = new VendingMachine(coinRepository);
+        VendingMachine machine = new VendingMachine(products, coinRepository);
         Map result = machine.calculateCoins(3.25);
 
         Assert.assertEquals(3, result.get(1.00));
@@ -89,12 +138,20 @@ public class VendingMachineTest {
 
     @Test
     public void shouldCalculateCoinsQtdWhenChangeIs1525AndQtdCoinsIsLimited() {
+        List<Product> products = new ArrayList<>();
+        Product productUnit1 = new ProductUnit("Dadinho", 0.15);
+        Product productUnit2 = new ProductUnit("Suco", 2.00);
+        Product productUnit3 = new ProductUnit("Amendoim", 1.15);
+        products.add(productUnit1);
+        products.add(productUnit2);
+        products.add(productUnit3);
+
         CoinRepository coinRepository = new CoinRepository();
         coinRepository.add(1.00,10);
         coinRepository.add(0.50,10);
         coinRepository.add(0.25,1);
 
-        VendingMachine machine = new VendingMachine(coinRepository);
+        VendingMachine machine = new VendingMachine(products, coinRepository);
         Map result = machine.calculateCoins(15.25);
 
         Assert.assertEquals(10, result.get(1.00));
@@ -108,12 +165,20 @@ public class VendingMachineTest {
 
     @Test
     public void shouldCalculateCoinsQtdWhenChangeIs1800AndQtdCoinsIsLimited() {
+        List<Product> products = new ArrayList<>();
+        Product productUnit1 = new ProductUnit("Dadinho", 0.15);
+        Product productUnit2 = new ProductUnit("Suco", 2.00);
+        Product productUnit3 = new ProductUnit("Amendoim", 1.15);
+        products.add(productUnit1);
+        products.add(productUnit2);
+        products.add(productUnit3);
+
         CoinRepository coinRepository = new CoinRepository();
         coinRepository.add(1.00,10);
         coinRepository.add(0.50,15);
         coinRepository.add(0.25,2);
 
-        VendingMachine machine = new VendingMachine(coinRepository);
+        VendingMachine machine = new VendingMachine(products, coinRepository);
         Map result = machine.calculateCoins(18.00);
 
         Assert.assertEquals(10, result.get(1.00));
@@ -127,12 +192,20 @@ public class VendingMachineTest {
 
     @Test
     public void shouldCalculateCoinsQtdWhenChangeIs1900AndQtdCoinsIsLimited() {
+        List<Product> products = new ArrayList<>();
+        Product productUnit1 = new ProductUnit("Dadinho", 0.15);
+        Product productUnit2 = new ProductUnit("Suco", 2.00);
+        Product productUnit3 = new ProductUnit("Amendoim", 1.15);
+        products.add(productUnit1);
+        products.add(productUnit2);
+        products.add(productUnit3);
+
         CoinRepository coinRepository = new CoinRepository();
         coinRepository.add(1.00,10);
         coinRepository.add(0.50,15);
         coinRepository.add(0.25,6);
 
-        VendingMachine machine = new VendingMachine(coinRepository);
+        VendingMachine machine = new VendingMachine(products, coinRepository);
         Map result = machine.calculateCoins(19.00);
 
         Assert.assertEquals(10, result.get(1.00));

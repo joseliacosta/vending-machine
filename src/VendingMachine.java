@@ -12,14 +12,6 @@ public class VendingMachine {
     private CoinRepository repository;
     public List<Double> coins;
 
-    public VendingMachine() {
-    }
-
-    public VendingMachine(CoinRepository repository) {
-        this.repository = repository;
-        this.coins = this.repository.getCoins();
-    }
-
     public VendingMachine(List<Product> products, CoinRepository repository) {
         this.products = products;
         this.repository = repository;
