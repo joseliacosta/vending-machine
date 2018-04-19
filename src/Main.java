@@ -1,4 +1,5 @@
 import product.Product;
+import product.ProductUnit;
 import repositories.CoinRepository;
 
 import java.util.*;
@@ -6,24 +7,43 @@ import java.util.*;
 public class Main {
     public static void main (String[] args) {
         List<Product> products = new ArrayList<>();
-        Product product1 = new Product("Dadinho", 0.15);
-        Product product2 = new Product("Suco", 2.00);
-        Product product3 = new Product("Amendoim", 1.15);
-        products.add(product1);
-        products.add(product2);
-        products.add(product3);
+        Product productUnit1 = new ProductUnit("Dadinho", 0.15);
+        Product productUnit2 = new ProductUnit("Suco", 2.10);
+        Product productUnit3 = new ProductUnit("Amendoim", 2.15);
+        Product productUnit4 = new ProductUnit("Paçoca", 0.50);
+        Product productUnit5 = new ProductUnit("Pipoca", 1.00);
+        Product productUnit6 = new ProductUnit("Bolacha", 5.00);
+        products.add(productUnit1);
+        products.add(productUnit2);
+        products.add(productUnit3);
+        products.add(productUnit4);
+        products.add(productUnit5);
+        products.add(productUnit6);
         CoinRepository coinRepository = new CoinRepository();
-        coinRepository.add(1.00,10);
+        coinRepository.add(1.00,20);
+        coinRepository.add(0.50,40);
+        coinRepository.add(0.25,50);
+        coinRepository.add(0.10,10);
         VendingMachine machine = new VendingMachine(products, coinRepository);
 
 
-        for(Product product : machine.getProducts()) {
-            System.out.println(product.getName());
+        for(int counter = 0; counter < machine.getProducts().size(); counter++) {
+            if(counter==0){
+                System.out.println("Cód.    Produto     Preço \n");
+            }
+            System.out.println(
+                            counter + 1 +  "   -    " +
+                            machine.getProducts().get(counter).getName() + "   -   " +
+                            machine.getProducts().get(counter).getPrice());
         }
 
         System.out.println("Informe o número do produto escolhido: ");
         Scanner scanner = new Scanner(System.in);
-        double productPrice = scanner.nextDouble();
+        int productChoosed = scanner.nextInt();
+
+        double productPrice = machine.getProducts().get(productChoosed-1).getPrice();
+
+        System.out.println("Por favor, efetue o pagamento: ");
 
         double payment = scanner.nextDouble();
 

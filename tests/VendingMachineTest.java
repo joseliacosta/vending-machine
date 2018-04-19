@@ -1,25 +1,24 @@
 import org.junit.Assert;
 import org.junit.Test;
 import product.Product;
+import product.ProductUnit;
 import repositories.CoinRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
-
 public class VendingMachineTest {
 
     @Test
     public void getProducts_shouldReturnThreeProducts() {
         List<Product> products = new ArrayList<>();
-        Product product1 = new Product("Dadinho", 0.15);
-        Product product2 = new Product("Suco", 2.00);
-        Product product3 = new Product("Amendoim", 1.15);
-        products.add(product1);
-        products.add(product2);
-        products.add(product3);
+        Product productUnit1 = new ProductUnit("Dadinho", 0.15);
+        Product productUnit2 = new ProductUnit("Suco", 2.00);
+        Product productUnit3 = new ProductUnit("Amendoim", 1.15);
+        products.add(productUnit1);
+        products.add(productUnit2);
+        products.add(productUnit3);
         CoinRepository coinRepository = new CoinRepository();
         coinRepository.add(1.00,10);
         VendingMachine machine = new VendingMachine(products, coinRepository);

@@ -1,7 +1,9 @@
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import product.Product;
+import product.ProductUnit;
 import repositories.CoinRepository;
 
 public class VendingMachine {
@@ -24,6 +26,7 @@ public class VendingMachine {
         this.coins = this.repository.getCoins();
     }
 
+
     public List<Product> getProducts() {
         return this.products;
     }
@@ -38,7 +41,6 @@ public class VendingMachine {
 
     public Map <Double,Integer> calculateCoins(double change) {
 
-        System.out.println("aqui estao as moedas: " + coins);
         Map qtdeCoins = new HashMap<Double, Integer>();
 
         double changeRest = change;
