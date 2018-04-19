@@ -1,5 +1,6 @@
 package product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductKit implements Product{
@@ -7,6 +8,7 @@ public class ProductKit implements Product{
     private String name;
     private Double discount;
     private List<ProductUnit> products;
+
 
     public ProductKit( String name,
                        Double discount,
@@ -33,6 +35,6 @@ public class ProductKit implements Product{
     }
 
     public List<ProductUnit> getProducts() {
-        return null;
+        return products;
     }
 }
