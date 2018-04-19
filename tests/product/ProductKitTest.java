@@ -31,4 +31,20 @@ public class ProductKitTest {
         Assert.assertEquals(2.25, kit1.getPrice());
 
     }
+
+    @Test
+    public void getName_shouldReturnKitName() {
+        List<ProductUnit> products = new ArrayList<>();
+
+        ProductUnit product1 = new ProductUnit("Dadinho", 0.50);
+        ProductUnit product2 = new ProductUnit("Paçoca", 1.00);
+        ProductUnit product3 = new ProductUnit("Pipoca", 1.00);
+        products.add(product1);
+        products.add(product2);
+        products.add(product3);
+
+        ProductKit kit = new ProductKit("Kit Junino", 0.10, products);
+        Assert.assertEquals("Kit Junino", kit.getName());
+
+    }
 }
