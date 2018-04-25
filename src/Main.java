@@ -1,3 +1,4 @@
+import presentation.ProductPresentation;
 import product.Product;
 import product.ProductUnit;
 import repositories.CoinRepository;
@@ -6,6 +7,9 @@ import java.util.*;
 
 public class Main {
     public static void main (String[] args) {
+
+
+
         List<Product> products = new ArrayList<>();
         Product productUnit1 = new ProductUnit("Dadinho", 0.15);
         Product productUnit2 = new ProductUnit("Suco", 2.10);
@@ -32,9 +36,10 @@ public class Main {
                 System.out.println("Cód.    Produto     Preço \n");
             }
             System.out.println(
-                            counter + 1 +  "   -    " +
-                            machine.getProducts().get(counter).getName() + "   -   " +
-                            machine.getProducts().get(counter).getPrice());
+//                            counter + 1 +  "   -    " +
+//                            machine.getProducts().get(counter).getName() + "   -   " +
+//                            machine.getProducts().get(counter).getPrice());
+
         }
 
         System.out.println("Informe o número do produto escolhido: ");
